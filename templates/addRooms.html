@@ -1,0 +1,49 @@
+
+{% extends "base.html" %}
+ {% load static %}
+
+
+                    <script type="text/javascript">
+
+        var checkList = document.getElementById('list1');
+        var items = document.getElementById('items');
+        checkList.getElementsByClassName('anchor')[0].onclick = function (evt) {
+            if (items.classList.contains('visible')){
+                items.classList.remove('visible');
+                items.style.display = "none";
+            }
+
+            else{
+                items.classList.add('visible');
+                items.style.display = "block";
+            }
+
+
+        }
+
+        items.onblur = function(evt) {
+            items.classList.remove('visible');
+        }
+    </script>
+               
+        {% block content %}
+        <section id="login" class="login section-bg mt-5  unversalhight ">
+       <div class=" container mt-5 mb-5">
+        <h2>Add Rooms</h2>
+        <h5>Please use the following form to enter the Rooms into the system for timetable generation</h5>
+<form method="post">
+	{% csrf_token %}
+	<fieldset>
+		<div class="tabcontent" id="new">
+			{{ form.as_p }}
+        <br>
+		<a href="{% url 'ttgen:editrooms' %}"><h1 class="submit btn btn-primary" onclick="openPage('edit')">View / Edit Rooms</h1>&nbsp;</a>
+    <input type="submit" value="Add Room" class="submit btn btn-success">
+		</div>
+	</fieldset>
+</form>
+       </div>
+       <section>
+      </section>
+        </section>
+{% endblock %}

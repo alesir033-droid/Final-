@@ -1,0 +1,69 @@
+
+{% extends "base.html" %}
+ {% load static %}
+
+                <script type="text/javascript">
+
+        var checkList = document.getElementById('list1');
+        var items = document.getElementById('items');
+        checkList.getElementsByClassName('anchor')[0].onclick = function (evt) {
+            if (items.classList.contains('visible')){
+                items.classList.remove('visible');
+                items.style.display = "none";
+            }
+
+            else{
+                items.classList.add('visible');
+                items.style.display = "block";
+            }
+
+
+        }
+
+        items.onblur = function(evt) {
+            items.classList.remove('visible');
+        }
+    </script>
+              
+    {% block content %}
+	<section id="login" class="login section-bg mt-5 unversalhight ">
+<div class=" container mt-5 mb-5">
+<fieldset class="fieldset mt- mb-5">
+    <a href="{% url 'ttgen:addCourses'%}"><h1 class="tablink" onclick="openPage('new')" id="defaultOpen">Back to Add Courses</h1></a>
+    <div class="tabcontent" id="edit">
+        <table class="table1">
+            <thead>
+            <tr class="table-headers">
+            <th>Course Code</th>
+            <th>Course Name</th>
+            <th>Max number of students</th>
+            <th  class="empty"></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for crs in courses %}
+            <tr>
+             <td>{{crs.course_number}}</td>
+             <td>{{crs.course_name}}</td>
+             <td>{{crs.max_numb_students}}</td>
+             <td class="empty">
+                <form action="{% url 'ttgen:deletecourse' crs.course_number %}" method="post">
+                        {% csrf_token %}
+                        <input type="submit" value="Delete" class="cross btn btn-danger">
+                </form>
+             </td>
+             </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+</fieldset>
+</div>
+<section>
+</section>
+<section>
+</section>
+	</section>
+{% endblock %}

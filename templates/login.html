@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- ======= Login Section ======= -->
+<section id="login" class="login section-bg unversalhight ">
+  <div class="container mt-5  " >
+
+    <div class="section-title mt-5">
+      
+     
+    </div>
+
+    <div class="row d-flex justify-content-center align-items-center mt-5">
+
+      <div class="col-lg-6 col-sm-10 col-md-6 col-xl-6 card m-1 shadow">
+        <form action="{% url 'classschedulingApp:login' %}" method="post" class="row g-3 m-5">
+          {% csrf_token%}
+
+         <p class="text-info"> {{ messagessuccess }} </p>
+            <div class="col-12 mt-5">
+              <label for="username" class="visually-hidden"></label>
+              <input type="text" name="username" class="form-control" id="username" placeholder=" User name " required>
+            </div>
+            <div class="col-12">
+                <label for="password" class="visually-hidden"></label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+              </div>
+            <div class="col-12 text-center">
+              <button type="submit" class="btn btn-primary mb-3 text-center">Login</button>
+            </div>
+          </form>
+          <div class="mb-5 text-center">
+          <a href="{% url 'password_reset' %}" class="text-center text-info"> Rest Password</a>
+        </div>
+      </div>
+
+   
+
+      
+
+     
+
+  </div>
+</section><!-- End Login Section -->
+        
+{% endblock content %}
+
+
+    
+ 
+
+    
+
+    
+
+   

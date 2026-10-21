@@ -1,0 +1,84 @@
+ {% extends "base.html" %}
+ {% load static %}
+
+                <script type="text/javascript">
+
+        var checkList = document.getElementById('list1');
+        var items = document.getElementById('items');
+        checkList.getElementsByClassName('anchor')[0].onclick = function (evt) {
+            if (items.classList.contains('visible')){
+                items.classList.remove('visible');
+                items.style.display = "none";
+            }
+
+            else{
+                items.classList.add('visible');
+                items.style.display = "block";
+            }
+
+
+        }
+
+        items.onblur = function(evt) {
+            items.classList.remove('visible');
+        }
+    </script>
+               
+        {% block content %}
+		<section id="login" class="login section-bg mt-5  unversalhight ">
+			
+		<div class="container mt-5">
+
+        <br><br>
+        <h2>Add Courses</h2>
+        <h5>Please use the following form to enter the Courses into the system for timetable generation</h5>
+		<div class="mb-3 mt-5">
+		<form method="post" class="">
+	{% csrf_token %}
+	<fieldset>
+		<div class="tabcontent" id="new">
+            <div class="mb-3 col-8">
+                <label for="exampleInputEmail1" class="form-label">Course ID</label>
+                
+              </div>
+            <div class="mb-3 col-8">
+                {{form.course_number}}
+                
+              </div>
+              <div class="mb-3 col-8">
+                <label for="exampleInputEmail1" class="form-label">Course Name</label>
+                
+              </div>
+              <div class="mb-3 col-8">
+                {{form.course_name}}
+                
+              </div>
+              <div class="mb-3 col-8">
+                <label for="exampleInputEmail1" class="form-label">Course Capacity</label>
+                
+              </div>
+              <div class="mb-3 col-8">
+                {{form.max_numb_students}}
+                
+              </div>
+              <div class="mb-3 col-8">
+                <label for="exampleInputEmail1" class="form-label">Course Teachers</label>
+                
+              </div>
+              <div class="mb-3 col-8">
+                {{form.instructors}}
+                
+              </div>
+			{#{ form.as_p }#}
+		<a href="{% url 'ttgen:editcourse' %}">
+			<h1 class="submit btn btn-primary m-2" onclick="openPage('edit')">View / Edit Courses</h1></a>
+			<input type="submit" value="Add Courses" class="submit m-2 btn btn-success">
+		</div>
+	</fieldset>
+</form>
+		</div>
+
+</div>
+
+</section >
+{% endblock %}

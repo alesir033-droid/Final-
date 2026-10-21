@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+                    <script type="text/javascript">
+
+        var checkList = document.getElementById('list1');
+        var items = document.getElementById('items');
+        checkList.getElementsByClassName('anchor')[0].onclick = function (evt) {
+            if (items.classList.contains('visible')){
+                items.classList.remove('visible');
+                items.style.display = "none";
+            }
+
+            else{
+                items.classList.add('visible');
+                items.style.display = "block";
+            }
+
+        }
+
+        items.onblur = function(evt) {
+            items.classList.remove('visible');
+        }
+    </script>
+                
+        {% block content %}
+		<section id="login" class="login section-bg mt-5 unversalhight ">
+       <div class="container mt-5 mb-5">
+        <h2>Add Teachers</h2>
+        <h5>Please use the following form to enter the Teachers into the system for timetable generation</h5>
+<form method="post">
+	{% csrf_token %}
+	<fieldset>
+        <br>
+		<div class="tabcontent col-8" id="new">
+			{#{ form.as_p }#}
+			<div class="">
+			<div class="mb-2 co-8">
+				<label for="exampleInputEmail1" class="form-label">Teacher UID</label>
+			</div>
+			<div class="mb-3 col-8">
+				{{ form.uid }}
+			  </div>
+			  <div class="mb-2">
+				<label for="exampleInputEmail1" class="form-label">Full Name</label>
+			</div>
+			<div class="mb-3 col-8">
+				{{ form.first_name }}
+			  </div>
+              <div class="mb-2">
+				<label for="exampleInputEmail1" class="form-label">Last Name</label>
+			</div>
+			<div class="mb-3 col-8">
+				{{ form.last_name }}
+			  </div>
+              
+			 
+            <br>
+            <a href="{% url 'ttgen:editinstructor' %}">
+				<input value="View / Edit Teachers" class="submit btn btn-primary"></a>&nbsp;
+				<input type="submit" value="Add Teacher" class=" btn btn-success">
+		</div>
+	</div>
+	</fieldset>
+</form>
+       </div>
+	</section>
+
+{% endblock %}

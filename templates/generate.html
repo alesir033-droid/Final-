@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+
+
+        
+          <section id="login" class="login section-bg  mb-5 unversalhight ">
+
+  <div class="jumbotron mt-2">
+    <div class="container mt-5">
+      <h1 class="display-4">Generate Timetable</h1>
+      <p>Please make sure you have entered the correct information for the Teachers, Rooms, Timings, Courses, Sections and Departments
+        into the system. If you have not entered all the information yet please refer below on how to go about feeding all the information into the system.
+          Once confirmed please click on the "Generate Timetable" button below and wait patiently as  generates your timetable for you.</p>
+      <p><a href="{% url 'ttgen:timetable' %}" class="btn btn-primary btn-lg">Generate Timetable&raquo;</a>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h2>1. Add Teachers</h2>
+        <p>Navigate to the "Add Teachers" section and add the corresponding details. Incorrect Details can also be removed via the "Edit Teacher" option.</p>
+
+      </div>
+      <div class="col-md-4">
+        <h2>2. Add Rooms</h2>
+        <p>Navigate to the "Add Rooms" section and add the corresponding details. Incorrect Details can also be removed via the "Edit Rooms" option.</p>
+
+      </div>
+      <div class="col-md-4">
+        <h2>3. Add Timings</h2>
+        <p>Navigate to the "Add Timings" section and add the corresponding details. Incorrect Details can also be removed via the "Edit Timings" option.</p>
+
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-4">
+        <h2>4. Add Courses</h2>
+        <p>Navigate to the "Add Courses" section and add the corresponding details. Incorrect Details can also be removed via the "Edit Courses" option.</p>
+
+      </div>
+      <div class="col-md-4">
+        <h2>5. Add Departments</h2>
+        <p>Navigate to the "Add Departments" section and add the corresponding details. Incorrect Details can also be removed via the "Edit Departments" option.</p>
+
+      </div>
+      <div class="col-md-4">
+        <h2>6. Add Sections</h2>
+        <p>Navigate to the "Add Sections" section and add the corresponding details. Incorrect Details can also be removed via the "Edit Sections" option.</p>
+
+      </div>
+    </div>
+
+     <br>
+
+    <div class="row mb-5">
+      <div class="col-md-4">
+        <h2>7. Generate Timetable</h2>
+        <p>Navigate to the "Generate Timetable" Section and click on Generate Timetable and wait patiently as our algorithm works its magic.</p>
+      </div>
+
+      </div>
+    </div>
+
+    <hr>
+
+  </div>
+          </section>
+
+
+{% endblock content %}

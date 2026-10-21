@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block hero %}
+
+       
+{% endblock hero %}
+
+{% block content %}
+
+<!-- ======= Class schedule Section ======= -->
+<section id="classscheduli" class="classscheduli section-bg unversalhight">
+ <div class="container" >
+
+
+   <div class="row d-flex justify-content-center mt-2 ">
+    <p class="text-info text-center"> {{ feedbackmessage }}</p>
+
+     <div class="col-lg-6">
+       <div class="member d-flex align-items-start" data-aos="zoom-in" data-aos-delay="100">
+        
+         <div class="member-info col-lg-12 col-md-12 col-xl-12 col-sm-12 align-items-start">
+            <form action="{% url 'classschedulingApp:feedback' %}" method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Your name</label>
+                  <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Your Email</label>
+                    <input type="email" class="form-control"  name="email"  id="exampleInputEmail1" aria-describedby="emailHelp">
+                   
+                  </div>
+                
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Subject</label>
+                  <input type="text" class="form-control"  name="subject" id="exampleInputPassword1">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Message</label>
+                    <textarea class="form-control" name="message" id="exampleFormControlTextarea1" rows="3"></textarea>
+                  </div>
+                  <div class="mb-3 text-center">
+                <button type="submit" class="btn btn-primary text-center">Submit</button>
+            </div>
+              </form>
+           </div>
+         </div>
+       </div>
+       {% if user.is_authenticated %}
+       {% for feedbacks in feedback %}
+       <div class="col-10 mt-3">
+        <div class="member d-flex align-items-start" data-aos="zoom-in" data-aos-delay="100">
+         
+          <div class="member-info col-lg-12 col-md-12 col-xl-12 col-sm-12 align-items-start">
+              <h5 > Subject :{{ feedbacks.subject }} </h5>
+              <p>Message:{{ feedbacks.message }} </p>
+          </div>
+        </div>
+     </div>
+     {% endfor%}
+     {% endif %}
+
+     
+
+     
+
+   
+
+ </div>
+</section><!-- End Class schedule Section -->
+
+       
+{% endblock content %}

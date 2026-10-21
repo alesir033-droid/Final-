@@ -1,0 +1,72 @@
+
+{% extends "base.html" %}
+ {% load static %}
+
+                    <script type="text/javascript">
+
+        var checkList = document.getElementById('list1');
+        var items = document.getElementById('items');
+        checkList.getElementsByClassName('anchor')[0].onclick = function (evt) {
+            if (items.classList.contains('visible')){
+                items.classList.remove('visible');
+                items.style.display = "none";
+            }
+
+            else{
+                items.classList.add('visible');
+                items.style.display = "block";
+            }
+
+
+        }
+
+        items.onblur = function(evt) {
+            items.classList.remove('visible');
+        }
+    </script>
+               
+        {% block content %}
+        <section id="login" class="login section-bg mt-5  unversalhight ">
+        <div class="container mt-5 mb-5"> 
+
+          <h1> Teacher List</h1>
+        </div>
+      <div class="container mt-5 mb-5">
+<fieldset class="fieldset">
+    <a href="{% url 'ttgen:addInstructors'%}"><h1 class="tablink" onclick="openPage('new')" id="defaultOpen">Back to Add Teachers</h1></a>
+    <div class="tabcontent" id="edit">
+        <table class="table1">
+            <thead class="m-2">
+            <tr class="table-headers">
+            <th class="m-2">UID</th>
+            <th class="m-2">Full Name</th>
+            
+            <th  class="empty"></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for inst in instructors %}
+            <tr class="m-2">
+             <td class="m-2">{{inst.uid}}</td>
+             <td class="m-2">{{inst.full_name}}</td>
+             <td class="empty">
+                <form action="{% url 'ttgen:deleteinstructor' inst.id %}" method="post">
+                        {% csrf_token %}
+                        <input type="submit" value="Delete" class="cross btn btn-danger">
+                </form>
+             </td>
+             </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+</fieldset>
+
+      </div>
+        </section>
+        <section>
+        </section>
+
+{% endblock %}
