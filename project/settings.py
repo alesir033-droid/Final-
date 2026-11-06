@@ -38,14 +38,15 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # ለ static ፋይል ማስተናገጃ
-    'django.contrib.sessions.middleware.SessionMiddleware', # የጠፋው 1
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware', # የጠፋው 2
-    'django.contrib.messages.middleware.MessageMiddleware', # የጠፋው 3
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 # Add whitenoise to your MIDDLEWARE, right below SecurityMiddleware
 MIDDLEWARE = [
