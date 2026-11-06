@@ -344,22 +344,19 @@ KIBRU_UI_TWEAKS = {
 }
 
 # ==============================================================================
-# RENDER DEPLOYMENT SETTINGS (እነዚህን ከታች በትክክል ይተኩዋቸው)
+# RENDER DEPLOYMENT SETTINGS (የድሮውን STORAGES አጥፍተው በዚህ ይተኩት)
 # ==============================================================================
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+# የጠፉ የ .map ፋይሎችን ችላ ብሎ static ፋይሎችን ብቻ የሚያዘጋጀው አስተማማኝ ቅንብር፡
 STORAGES = {
     "default": {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
     },
     "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        "BACKEND": "whitenoise.storage.StaticFilesStorage",  # <-- ወደዚህ ተቀይሯል
     },
 }
-
-# በ simplex ጭብጥ (theme) ምክንያት የሚመጣውን የ .map ፋይል ስህተት የሚያስቀረው ዋናው መስመር፡
-WHITENOISE_MANIFEST_STRICT = False
-
 
