@@ -11,10 +11,14 @@ TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-w-w0+yf3%lf+hst5k%vvtzh(wnr0pql-!viz0(lh@_8h2=)81z'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+import os  # <-- Make sure this is at the top of the file with other imports
 
-ALLOWED_HOSTS = ["*","192.168.21.243","127.0.0.1"]
+# REPLACE YOUR EXISTING SECRET_KEY, DEBUG, AND ALLOWED_HOSTS WITH THIS:
+SECRET_KEY = os.environ.get('SECRET_KEY', 'your-default-safe-local-development-key')
+
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+
+ALLOWED_HOSTS = ['*'] 
 
 
 # Application definition
@@ -42,6 +46,25 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# Add whitenoise to your MIDDLEWARE, right below SecurityMiddleware
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # <-- Add this line
+    # ... rest of your middleware
+]
+
+# Configure static storage settings at the bottom of the file
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
+
 ROOT_URLCONF = 'project.urls'
 
 TEMPLATES = [
@@ -65,12 +88,13 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+import dj_database_url  # <-- Add this right above the DATABASES definition
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
+        conn_max_age=600
+    )
 }
 
 
