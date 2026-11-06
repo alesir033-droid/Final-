@@ -1,1 +1,5 @@
 pip freeze > requirements.txt
+django
+gunicorn
+whitenoise
+dj-database-url
