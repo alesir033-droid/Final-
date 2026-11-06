@@ -292,7 +292,6 @@ KIBRU_SETTINGS = {
     "use_google_fonts_cdn": True,
     # Whether to show the UI customizer on the sidebar
     "show_ui_builder": True,
-
     ###############
     # Change view #
     ###############
@@ -308,7 +307,6 @@ KIBRU_SETTINGS = {
     # Add a language dropdown into the admin
     #"language_chooser": True,
 }
-
 
 KIBRU_UI_TWEAKS = {
     "navbar_small_text": False,
@@ -344,4 +342,24 @@ KIBRU_UI_TWEAKS = {
         "success": "btn-success",
     },
 }
+
+# ==============================================================================
+# RENDER DEPLOYMENT SETTINGS (እነዚህን ከታች በትክክል ይተኩዋቸው)
+# ==============================================================================
+
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
+
+# በ simplex ጭብጥ (theme) ምክንያት የሚመጣውን የ .map ፋይል ስህተት የሚያስቀረው ዋናው መስመር፡
+WHITENOISE_MANIFEST_STRICT = False
+
 
