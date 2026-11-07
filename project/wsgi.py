@@ -10,7 +10,7 @@ try:
     from django.contrib.auth import get_user_model
     User = get_user_model()
     if not User.objects.filter(username='admin').exists():
-        User.objects.create_superuser('admin', 'admin@example.com', 'MyNewSecurePassword123!')
+        User.objects.create_superuser('admin', 'admin@example.com', '1441')
         print("=== Live Superuser 'admin' created successfully! ===")
 except Exception as e:
     print(f"Error creating superuser: {e}")
