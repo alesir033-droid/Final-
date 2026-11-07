@@ -47,14 +47,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-
-# Add whitenoise to your MIDDLEWARE, right below SecurityMiddleware
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # <-- Add this line
-    # ... rest of your middleware
-]
-
 # Configure static storage settings at the bottom of the file
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
