@@ -2,19 +2,8 @@
 # exit on error
 set -o errexit
 
+# ይህ መስመር በመጨረሻው ላይ s መኖሩን ያረጋግጡ፡
 pip install -r requirements.txt
 
 python manage.py collectstatic --no-input
-python manage.py migrate
-#!/usr/bin/env bash
-# exit on error
-set -o errexit
-
-# Install dependencies
-pip install -r requirement.txt
-
-# Convert static files
-python manage.py collectstatic --no-input
-
-# Run migrations
 python manage.py migrate
