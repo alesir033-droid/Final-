@@ -15,7 +15,7 @@ def main():
     
     User = get_user_model()
     if not User.objects.filter(username='admin').exists():
-        User.objects.create_superuser('admin', 'admin@example.com', 'አዲስ_ጠንካራ_ፓስወርድ123')
+        User.objects.create_superuser('admin', 'admin', '1441')
         print("=== Superuser 'admin' created successfully! ===")
 
     execute_from_command_line(sys.argv)
